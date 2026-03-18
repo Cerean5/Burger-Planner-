@@ -1,8 +1,15 @@
 {
-"name": "Burger Planner",
-"short_name": "BurgerPlanner",
-"start_url": "/",
-"display": "standalone",
-"background_color": "#111111",
-"theme_color": "#ff3c2f"
+  "name": "Burger Planner",
+  "short_name": "Burger",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#071025",
+  "theme_color": "#16a34a",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
 }
