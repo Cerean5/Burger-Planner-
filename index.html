@@ -1,199 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-<title>Serious Finch Artist Growth Hub</title>
+<title>Burger Planner | Burger, Smoothie & Salad Recipes</title>
 
-<link rel="manifest" href="manifest.json">
+<meta name="description" content="Discover burger recipes, smoothie ideas, salad recipes and meal planning tools. Build your perfect burger menu.">
+<meta name="keywords" content="burger recipes, smoothie recipes, salad recipes, burger planner, meal planner">
+<meta name="author" content="Serious Finch">
+
+<meta name="robots" content="index, follow">
+
+<!-- SOCIAL -->
+<meta property="og:title" content="Burger Planner" />
+<meta property="og:description" content="Build your perfect burger menu." />
+<meta property="og:type" content="website" />
+
+<meta name="theme-color" content="#16a34a">
+
+<!-- GOOGLE ADS -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5725347847902782" crossorigin="anonymous"></script>
+
+<!-- FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
+body {
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  background: linear-gradient(135deg, #071025, #0c173a);
+  color: white;
 }
 
-body{
-background:#020617;
-color:white;
+header {
+  padding: 20px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 900;
+  color: #4ade80;
 }
 
-/* HERO */
-
-.hero{
-height:100vh;
-background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.8)),
-url("https://images.unsplash.com/photo-1511379938547-c1f69419868d");
-background-size:cover;
-background-position:center;
-display:flex;
-align-items:center;
-padding:40px;
+.container {
+  padding: 20px;
 }
 
-.hero-content{
-max-width:700px;
+.card {
+  background: #111c45;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
-.tag{
-color:#ff5b00;
-letter-spacing:3px;
-font-size:14px;
-margin-bottom:15px;
+button {
+  background: #16a34a;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-h1{
-font-size:70px;
-font-weight:900;
-line-height:1;
-margin-bottom:30px;
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  width: 100%;
+  margin-bottom: 10px;
 }
-
-.buttons{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
-}
-
-.btn{
-padding:15px 30px;
-border-radius:40px;
-font-weight:bold;
-cursor:pointer;
-border:none;
-}
-
-.primary{
-background:linear-gradient(90deg,#ff003c,#ff3d3d);
-color:white;
-}
-
-.secondary{
-background:white;
-color:black;
-}
-
-/* HUB SECTION */
-
-.section{
-padding:60px 25px;
-max-width:1100px;
-margin:auto;
-}
-
-.card{
-background:#0f1c3a;
-padding:30px;
-border-radius:12px;
-margin-bottom:30px;
-}
-
-.radio-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-margin-top:20px;
-}
-
-.radio{
-background:#2f45ff;
-padding:15px;
-text-align:center;
-border-radius:10px;
-cursor:pointer;
-}
-
-.music-player{
-margin-top:20px;
-}
-
 </style>
 </head>
 
 <body>
 
-<section class="hero">
+<header>🍔 Burger Planner</header>
 
-<div class="hero-content">
-
-<div class="tag">OFFICIAL ARTIST HUB</div>
-
-<h1>SERIOUS<br>FINCH</h1>
-
-<div class="buttons">
-
-<button class="btn primary"
-onclick="document.getElementById('hub').scrollIntoView()">
-ARTIST GROWTH HUB
-</button>
-
-<button class="btn secondary"
-onclick="playDemo()">
-▶ LATEST DROP
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="section" id="hub">
+<div class="container">
 
 <div class="card">
+<h2>Create Your Burger</h2>
 
-<h2>Music Player</h2>
+<input id="protein" placeholder="Protein (Beef, Chicken, Vegan)">
+<input id="toppings" placeholder="Toppings (Cheese, Lettuce, etc)">
+<input id="sauce" placeholder="Sauce (BBQ, Mayo, etc)">
 
-<audio id="player" controls class="music-player"></audio>
+<button onclick="generateBurger()">Build Burger</button>
 
-<button onclick="playDemo()" class="btn primary">
-Play Serious Finch Demo
-</button>
-
+<p id="result"></p>
 </div>
 
 <div class="card">
+<h2>Quick Smoothie Idea</h2>
+<button onclick="smoothie()">Generate</button>
+<p id="smoothie"></p>
+</div>
 
-<h2>Top Radio Stations</h2>
-
-<div class="radio-grid">
-
-<div class="radio" onclick="playRadio('https://stream.revma.ihrhls.com/zc1465')">Z100</div>
-
-<div class="radio" onclick="playRadio('https://playerservices.streamtheworld.com/api/livestream-redirect/KIISFMAAC.aac')">KIIS FM</div>
-
-<div class="radio" onclick="playRadio('https://playerservices.streamtheworld.com/api/livestream-redirect/WQHTFMAAC.aac')">HOT 97</div>
-
-<div class="radio" onclick="playRadio('https://playerservices.streamtheworld.com/api/livestream-redirect/KPWRFMAAC.aac')">Power 106</div>
-
+<div class="card">
+<h2>Salad Generator</h2>
+<button onclick="salad()">Generate</button>
+<p id="salad"></p>
 </div>
 
 </div>
-
-</section>
 
 <script>
+function generateBurger() {
+  const protein = document.getElementById("protein").value;
+  const toppings = document.getElementById("toppings").value;
+  const sauce = document.getElementById("sauce").value;
 
-let player = document.getElementById("player")
-
-function playDemo(){
-
-player.src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-player.play()
-
+  document.getElementById("result").innerText =
+    `🔥 Your Burger: ${protein} with ${toppings} + ${sauce}`;
 }
 
-function playRadio(url){
-
-player.src=url
-player.play()
-
+function smoothie() {
+  const ideas = [
+    "Strawberry Banana Blast 🍓🍌",
+    "Mango Pineapple Power 🥭🍍",
+    "Blueberry Protein Smoothie 🫐",
+  ];
+  document.getElementById("smoothie").innerText =
+    ideas[Math.floor(Math.random() * ideas.length)];
 }
 
+function salad() {
+  const ideas = [
+    "Grilled Chicken Caesar 🥗",
+    "Vegan Avocado Mix 🥑",
+    "Mediterranean Feta Salad 🧀",
+  ];
+  document.getElementById("salad").innerText =
+    ideas[Math.floor(Math.random() * ideas.length)];
+}
+</script>
+
+<!-- PWA INSTALL -->
+<script>
+let deferredPrompt;
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  const btn = document.createElement("button");
+  btn.innerText = "Install App";
+  btn.style.position = "fixed";
+  btn.style.bottom = "20px";
+  btn.style.right = "20px";
+  btn.style.zIndex = "9999";
+
+  document.body.appendChild(btn);
+
+  btn.onclick = () => {
+    deferredPrompt.prompt();
+  };
+});
 </script>
 
 </body>
