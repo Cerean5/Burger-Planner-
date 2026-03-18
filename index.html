@@ -12,18 +12,21 @@
 
 <meta name="robots" content="index, follow">
 
-<!-- SOCIAL -->
+<link rel="canonical" href="https://burger-planner.replit.app">
+
 <meta property="og:title" content="Burger Planner" />
 <meta property="og:description" content="Build your perfect burger menu." />
 <meta property="og:type" content="website" />
 
 <meta name="theme-color" content="#16a34a">
 
-<!-- GOOGLE ADS -->
+<!-- Google Ads -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5725347847902782" crossorigin="anonymous"></script>
 
-<!-- FONTS -->
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&display=swap" rel="stylesheet">
+
+<link rel="manifest" href="./manifest.json" />
 
 <style>
 body {
@@ -34,8 +37,8 @@ body {
 }
 
 header {
-  padding: 20px;
   text-align: center;
+  padding: 20px;
   font-size: 28px;
   font-weight: 900;
   color: #4ade80;
@@ -50,13 +53,12 @@ header {
   border-radius: 16px;
   padding: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
 button {
   background: #16a34a;
   border: none;
-  padding: 12px 20px;
+  padding: 12px;
   border-radius: 10px;
   color: white;
   font-weight: bold;
@@ -64,11 +66,11 @@ button {
 }
 
 input {
+  width: 100%;
   padding: 10px;
   border-radius: 10px;
-  border: none;
-  width: 100%;
   margin-bottom: 10px;
+  border: none;
 }
 </style>
 </head>
@@ -80,19 +82,18 @@ input {
 <div class="container">
 
 <div class="card">
-<h2>Create Your Burger</h2>
+<h2>Build Your Burger</h2>
 
 <input id="protein" placeholder="Protein (Beef, Chicken, Vegan)">
-<input id="toppings" placeholder="Toppings (Cheese, Lettuce, etc)">
-<input id="sauce" placeholder="Sauce (BBQ, Mayo, etc)">
+<input id="toppings" placeholder="Toppings">
+<input id="sauce" placeholder="Sauce">
 
-<button onclick="generateBurger()">Build Burger</button>
-
-<p id="result"></p>
+<button onclick="buildBurger()">Create</button>
+<p id="output"></p>
 </div>
 
 <div class="card">
-<h2>Quick Smoothie Idea</h2>
+<h2>Smoothie Generator</h2>
 <button onclick="smoothie()">Generate</button>
 <p id="smoothie"></p>
 </div>
@@ -106,39 +107,39 @@ input {
 </div>
 
 <script>
-function generateBurger() {
-  const protein = document.getElementById("protein").value;
-  const toppings = document.getElementById("toppings").value;
-  const sauce = document.getElementById("sauce").value;
+function buildBurger() {
+  const p = document.getElementById("protein").value;
+  const t = document.getElementById("toppings").value;
+  const s = document.getElementById("sauce").value;
 
-  document.getElementById("result").innerText =
-    `🔥 Your Burger: ${protein} with ${toppings} + ${sauce}`;
+  document.getElementById("output").innerText =
+    `🔥 ${p} burger with ${t} + ${s}`;
 }
 
 function smoothie() {
-  const ideas = [
-    "Strawberry Banana Blast 🍓🍌",
-    "Mango Pineapple Power 🥭🍍",
-    "Blueberry Protein Smoothie 🫐",
-  ];
+  const list = ["Strawberry Banana", "Mango Pineapple", "Blueberry Protein"];
   document.getElementById("smoothie").innerText =
-    ideas[Math.floor(Math.random() * ideas.length)];
+    list[Math.floor(Math.random()*list.length)];
 }
 
 function salad() {
-  const ideas = [
-    "Grilled Chicken Caesar 🥗",
-    "Vegan Avocado Mix 🥑",
-    "Mediterranean Feta Salad 🧀",
-  ];
+  const list = ["Caesar", "Avocado Mix", "Mediterranean"];
   document.getElementById("salad").innerText =
-    ideas[Math.floor(Math.random() * ideas.length)];
+    list[Math.floor(Math.random()*list.length)];
 }
 </script>
 
-<!-- PWA INSTALL -->
+<!-- SERVICE WORKER -->
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./service-worker.js")
+}
+</script>
+
+<!-- INSTALL BUTTON -->
 <script>
 let deferredPrompt;
+
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
   deferredPrompt = e;
@@ -148,13 +149,10 @@ window.addEventListener("beforeinstallprompt", (e) => {
   btn.style.position = "fixed";
   btn.style.bottom = "20px";
   btn.style.right = "20px";
-  btn.style.zIndex = "9999";
 
   document.body.appendChild(btn);
 
-  btn.onclick = () => {
-    deferredPrompt.prompt();
-  };
+  btn.onclick = () => deferredPrompt.prompt();
 });
 </script>
 
